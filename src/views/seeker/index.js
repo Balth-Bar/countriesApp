@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
 import { AppContext } from '../../../context/appState';
-import { useCountries, useRegion } from '../../hooks/reactQueryHooks';
-import { Picker } from '@react-native-picker/picker';
+import InputPiker from './InputPiker';
 
 const Seeker = ({
 
 }) => {
 
-    const { apiData } = useContext(AppContext)
+    const { apiData, findCountries, setFindCountries } = useContext(AppContext)
     const [showData, setShowData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [position, setPosition] = useState(0);
-    const [findCountries, setFindCountries] = useState([]);
-
-    const [filtro, setFiltro] = useState();
-
+    const [Onetime, setOneTime] = useState(true);
+    const [loading, setLoading] = useState();
+    const [regionContries, setRegionContries] = useState([]);
+    const [isFiltering, setIsFiltering] = useState(false);
 
 
     useEffect(() => {
         let slice = []
+
         if (findCountries.length !== 0) {
             slice = findCountries.slice(position, position + 10)
             setPosition(position + 10)
@@ -31,15 +30,20 @@ const Seeker = ({
         setPosition(position + 10)
         setShowData([...showData, ...slice])
         setLoading(false)
+    }, [loading, apiData, Onetime])
 
-    }, [loading, apiData])
 
     const serchCountrie = (e) => {
-        let findCountries = apiData.filter((countrie) => countrie.name.official.toLowerCase().includes(e.toLowerCase()))
-        if (findCountries.length > 0) {
+        let countries = []
+        if (!isFiltering) {
+            countries = apiData.filter((countrie) => countrie.name.official.toLowerCase().includes(e.toLowerCase()))
+        } else {
+            countries = regionContries.filter((countrie) => countrie.name.official.toLowerCase().includes(e.toLowerCase()))
+        }
+        if (countries.length > 0) {
             setPosition(0)
             setShowData([])
-            setFindCountries(findCountries)
+            setFindCountries(countries)
             setLoading(true)
         } else {
             setShowData([])
@@ -75,17 +79,14 @@ const Seeker = ({
                 placeholder='Usuario'
                 onChangeText={(text) => serchCountrie(text)}
             />
-
-
-            <Picker
-                onValueChange={(valor) => setFiltro(valor)}
-                selectedValue={filtro}
-                mode={"dropdown"}
-            >
-                <Picker.Item label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
-            </Picker>
-
+            <InputPiker
+                setShowData={setShowData}
+                setOneTime={setOneTime}
+                setPosition={setPosition}
+                Onetime={Onetime}
+                setIsFiltering={setIsFiltering}
+                setRegionContries={setRegionContries}
+            />
             <FlatList
                 data={showData}
                 keyExtractor={(item, index) => index}
@@ -93,9 +94,6 @@ const Seeker = ({
                 ListFooterComponent={renderLoader}
                 onEndReached={loadMoreItem}
             />
-
-
-
         </View>
     );
 

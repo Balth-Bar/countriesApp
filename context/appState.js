@@ -12,17 +12,35 @@ const AppState = (props) => {
                         ...prevState,
                         apiData: action.apiData
                     };
+                case 'SET_API_DATA':
+                    return {
+                        ...prevState,
+                        findCountries: action.findCountries
+                    };
+
+                case 'SET_FIND_COUNTRIES':
+                    return {
+                        ...prevState,
+                        findCountries: action.findCountries
+                    };
+                case 'SET_LOADING':
+                    return {
+                        ...prevState,
+                        loading: action.loading
+                    };
             }
         },
         {
             showData: [],
-            apiData: []
+            apiData: [],
+            findCountries: [],
         }
     )
 
     const authContext = useMemo(
         () => ({
             setApiData: (apiData) => dispatch({ type: 'SET_API_DATA', apiData }),
+            setFindCountries: (findCountries) => dispatch({ type: 'SET_FIND_COUNTRIES', findCountries }),
         }),
         []
     );
