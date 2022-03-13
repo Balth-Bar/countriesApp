@@ -1,14 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Searcher from './src/componets/Navigator'
+import { QueryClient, QueryClientProvider } from 'react-query';
+import AppState from './context/appState';
 
-export default function App() {
+const queryClient = new QueryClient();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <AppState>
+        <Searcher />
+      </AppState>
+    </QueryClientProvider>
   );
 }
+
+export default App
 
 const styles = StyleSheet.create({
   container: {
