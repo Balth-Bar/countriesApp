@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
+
 import { AppContext } from '../../../context/appState';
+import { TextInputStyle, Touchable, ViewContent } from '../../shared/StyledComponets';
+import CountriCard from './CountriCard';
 import InputPiker from './InputPiker';
 
 const Seeker = ({
-
+    navigation
 }) => {
 
-    const { apiData, findCountries, setFindCountries } = useContext(AppContext)
+    const { apiData, findCountries, setFindCountries, isDark } = useContext(AppContext)
     const [showData, setShowData] = useState([]);
     const [position, setPosition] = useState(0);
     const [Onetime, setOneTime] = useState(true);
@@ -15,6 +18,7 @@ const Seeker = ({
     const [regionContries, setRegionContries] = useState([]);
     const [isFiltering, setIsFiltering] = useState(false);
 
+    const [color, setColor] = useState();
 
     useEffect(() => {
         let slice = []
@@ -52,9 +56,7 @@ const Seeker = ({
 
     const renderItem = ({ item, index }) => {
         return (
-            <View style={{ height: 200, justifyContent: "center", alignItems: "center", backgroundColor: "#CCC", marginVertical: 2 }}>
-                <Text>{item.name.official}</Text>
-            </View>
+            <CountriCard item={item} index={index} navigation={navigation} />
         )
     }
 
@@ -73,11 +75,32 @@ const Seeker = ({
 
 
     return (
-        <View >
-
+        <ViewContent isDark={isDark} >
             <TextInput
-                placeholder='Usuario'
+                style={{
+                    backgroundColor: isDark ? "#303444" : "#FFFCFC",
+                    marginTop: 20,
+                    width: "90%",
+                    height: 50,
+                    alignSelf: "center",
+                    fontSize: 14,
+                    borderRadius: 5,
+                    paddingLeft: 20,
+                    shadowColor: "#000",
+                    shadowOffset: {
+                        width: 0,
+                        height: 4,
+                    },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 11.14,
+
+                    elevation: 17,
+                }}
+
+                placeholder='Search for a country...'
                 onChangeText={(text) => serchCountrie(text)}
+                placeholderTextColor={isDark ? "#FFF" : "#000"}
+
             />
             <InputPiker
                 setShowData={setShowData}
@@ -94,7 +117,7 @@ const Seeker = ({
                 ListFooterComponent={renderLoader}
                 onEndReached={loadMoreItem}
             />
-        </View>
+        </ViewContent>
     );
 
 

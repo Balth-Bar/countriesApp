@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import { useRegion } from '../../hooks/reactQueryHooks';
 import { AppContext } from '../../../context/appState';
+import { View } from 'react-native';
 
 
 const InputPiker = ({
@@ -14,8 +15,7 @@ const InputPiker = ({
 }) => {
     const [filter, setFilter] = useState("");
     const { data, isFetching } = useRegion(filter);
-    const { setFindCountries } = useContext(AppContext)
-    // const [enable, setEnable] = useState(true);
+    const { setFindCountries, isDark } = useContext(AppContext)
 
     useEffect(() => {
         if (filter == "") {
@@ -40,15 +40,33 @@ const InputPiker = ({
     }, [isFetching, filter])
 
     return (
+
         <Picker
             onValueChange={(valor) => {
                 setFilter(valor)
-                // setEnable(false)
-                // setTimeout(() => setEnable(true), 1000);
             }}
             selectedValue={filter}
+
             mode={"dropdown"}
-        // enabled={enable}
+            style={{
+                backgroundColor: isDark ? "#303444" : "#FFFCFC",
+                marginVertical: 30,
+                width: "40%",
+                height: 50,
+                paddingLeft: 10,
+                marginLeft: "5%",
+                fontSize: 14,
+                borderRadius: 5,
+                color: isDark ? "#fff" : "#000",
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 8,
+                },
+                shadowOpacity: 0.5,
+                shadowRadius: 11.14,
+                elevation: 17,
+            }}
         >
             <Picker.Item label="All" value="" />
             <Picker.Item label="Africa" value="africa" />
@@ -58,6 +76,8 @@ const InputPiker = ({
             <Picker.Item label="Oceania" value="oceania" />
 
         </Picker>
+
+
     );
 }
 export default InputPiker;

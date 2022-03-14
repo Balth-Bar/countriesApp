@@ -23,15 +23,16 @@ const AppState = (props) => {
                         ...prevState,
                         findCountries: action.findCountries
                     };
-                case 'SET_LOADING':
+                case 'SET_DARK':
                     return {
                         ...prevState,
-                        loading: action.loading
+                        isDark: action.color
                     };
+
             }
         },
         {
-            showData: [],
+            isDark: false,
             apiData: [],
             findCountries: [],
         }
@@ -41,6 +42,7 @@ const AppState = (props) => {
         () => ({
             setApiData: (apiData) => dispatch({ type: 'SET_API_DATA', apiData }),
             setFindCountries: (findCountries) => dispatch({ type: 'SET_FIND_COUNTRIES', findCountries }),
+            setDarkMode: (color) => dispatch({ type: 'SET_DARK', color })
         }),
         []
     );
