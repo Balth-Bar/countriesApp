@@ -14,8 +14,8 @@ const InputPiker = ({
 }) => {
     const [filter, setFilter] = useState("");
     const { data, isFetching } = useRegion(filter);
-    const { setFindCountries, setLoading } = useContext(AppContext)
-    const [enable, setEnable] = useState(true);
+    const { setFindCountries } = useContext(AppContext)
+    // const [enable, setEnable] = useState(true);
 
     useEffect(() => {
         if (filter == "") {
@@ -37,7 +37,7 @@ const InputPiker = ({
             setOneTime(!Onetime)
         }
 
-    }, [isFetching])
+    }, [isFetching, filter])
 
     return (
         <Picker
