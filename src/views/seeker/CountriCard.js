@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { View, Text, Image } from 'react-native';
+import Svg from 'react-native-svg';
 import { AppContext } from '../../../context/appState';
-import { CountriFlag, Touchable } from '../../shared/StyledComponets';
+import { formatQuantity } from '../../helper';
+import { CardGroup, CardText, CardTitleText, CountriFlag, Touchable } from '../../shared/StyledComponets';
+
 
 const CountriCard = ({
     item,
@@ -9,22 +12,48 @@ const CountriCard = ({
     navigation
 }) => {
     const { isDark } = useContext(AppContext)
+
     return (
         <Touchable
             isDark={isDark}
             onPress={() => navigation.navigate("Details", item)}
         >
-            <Image
+
+            <CountriFlag
                 source={{ uri: item.flags.png }}
                 resizeMode="stretch"
-                style={{
-                    width: "100%",
-                    height: 250
-                }}
             />
-            {/* <View style={{ height: 200, justifyContent: "center", alignItems: "center", marginVertical: 2 }}>
-                <Text>{item.name.official}</Text>
-            </View> */}
+            <CardGroup>
+                <CardTitleText tleText isDark={isDark}>
+                    {item.name.common}
+                </CardTitleText>
+                <Text>
+                    <CardText isDark={isDark} isBold={true}>
+                        Population:{" "}
+                    </CardText>
+                    <CardText isDark={isDark}>
+                        {formatQuantity(item.population)}
+                    </CardText>
+                </Text>
+                <Text>
+                    <CardText isDark={isDark} isBold={true}>
+                        Region:{" "}
+                    </CardText>
+                    <CardText isDark={isDark}>
+                        {item.region}
+                    </CardText>
+                </Text>
+                <Text>
+                    <CardText isDark={isDark} isBold={true}>
+                        Capital:{" "}
+                    </CardText>
+                    <CardText isDark={isDark}>
+                        {item.capital}
+                    </CardText>
+
+                </Text>
+            </CardGroup>
+
         </Touchable>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
+import { View, FlatList, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
 
 import { AppContext } from '../../../context/appState';
 import { TextInputStyle, Touchable, ViewContent } from '../../shared/StyledComponets';
@@ -73,7 +73,6 @@ const Seeker = ({
         setLoading(true)
     };
 
-
     return (
         <ViewContent isDark={isDark} >
             <TextInput
@@ -93,8 +92,8 @@ const Seeker = ({
                     },
                     shadowOpacity: 0.5,
                     shadowRadius: 11.14,
-
                     elevation: 17,
+                    color: isDark ? "#FFF" : "#000"
                 }}
 
                 placeholder='Search for a country...'
@@ -111,6 +110,7 @@ const Seeker = ({
                 setRegionContries={setRegionContries}
             />
             <FlatList
+                style={{ marginBottom: 100 }}
                 data={showData}
                 keyExtractor={(item, index) => index}
                 renderItem={renderItem}

@@ -1,16 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+import { LoadContainer } from '../../shared/StyledComponets';
 
 const Load = ({
 
 }) => {
 
     return (
-        <View >
-            <Text>
-                Load
-            </Text>
-        </View>
+        <LoadContainer>
+            <ActivityIndicator size="large" color="#aaa" />
+        </LoadContainer>
     );
 }
 export default Load;
