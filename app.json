@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "countriesApp",
+    "githubUrl": "https://github.com/Balth-Bar/countriesApp.git"
   }
 }
