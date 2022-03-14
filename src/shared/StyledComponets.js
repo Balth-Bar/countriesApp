@@ -91,6 +91,7 @@ export const CardText = styled.Text`
     color: ${props => (props.isDark ? white : Black)};
     font-weight: ${props => (props.isBold ? "bold" : "normal")};
     padding: 5px;
+    margin-left: ${props => (props.isAlone ? "5%" : "0px")};
 `
 
 
@@ -107,6 +108,7 @@ export const ButtosContent = styled.View`
     align-self: center;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom: 20px;
 `
 
 export const LoadContainer = styled.View`

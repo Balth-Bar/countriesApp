@@ -18,25 +18,25 @@ const InputPiker = ({
     const { setFindCountries, isDark } = useContext(AppContext)
 
     useEffect(() => {
-        if (filter == "") {
-            setIsFiltering(false)
-        } else {
-            setIsFiltering(true)
+        if (!isFetching) {
+            if (filter == "") {
+                setIsFiltering(false)
+            } else {
+                setIsFiltering(true)
+            }
+            if (data) {
+                setShowData([])
+                setRegionContries(data)
+                setFindCountries(data)
+                setPosition(0)
+                setOneTime(!Onetime)
+            } else {
+                setShowData([])
+                setFindCountries([])
+                setPosition(0)
+                setOneTime(!Onetime)
+            }
         }
-
-        if (data) {
-            setShowData([])
-            setRegionContries(data)
-            setFindCountries(data)
-            setPosition(0)
-            setOneTime(!Onetime)
-        } else {
-            setShowData([])
-            setFindCountries([])
-            setPosition(0)
-            setOneTime(!Onetime)
-        }
-
     }, [isFetching, filter])
 
     return (

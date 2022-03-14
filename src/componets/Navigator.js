@@ -35,7 +35,7 @@ const Searcher = ({
                     initialRouteName='Seeker'
                     screenOptions={{
                         headerBackButtonMenuEnabled: false,
-                        headerTitle: () => <HeaderText isDark={isDark}>Where in the wolrd?</HeaderText>,
+                        headerTitle: () => <HeaderText isDark={isDark}>Where in the world?</HeaderText>,
                         headerStyle: {
                             backgroundColor: isDark ? '#303444' : "#FFF",
                         },

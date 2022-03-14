@@ -104,6 +104,9 @@ const Details = ({ route }) => {
                     </Text>
 
                 </CardGroup>
+                <CardText isDark={isDark} isBold={true} isAlone={true}>
+                    Border Countries:
+                </CardText>
                 <ButtosContent>
                     {values && values.map((value, index) =>
                         <TouchableOpacity

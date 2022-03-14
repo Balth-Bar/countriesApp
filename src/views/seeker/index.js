@@ -24,16 +24,19 @@ const Seeker = ({
         let slice = []
 
         if (findCountries.length !== 0) {
-            slice = findCountries.slice(position, position + 10)
-            setPosition(position + 10)
+            slice = findCountries.slice(position, position + 5)
+            setPosition(position + 5)
             setShowData([...showData, ...slice])
             setLoading(false)
             return
         }
-        slice = apiData.slice(position, position + 10)
-        setPosition(position + 10)
+
+        slice = apiData.slice(position, position + 5)
+        setPosition(position + 5)
         setShowData([...showData, ...slice])
         setLoading(false)
+
+
     }, [loading, apiData, Onetime])
 
 
