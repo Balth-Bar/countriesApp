@@ -53,7 +53,7 @@ export const HeaderButtonText = styled.Text`
 
 export const ViewContent = styled.View`
     background-color: ${props => (props.isDark ? Shark : RoseWhite)};
-    height: ${deviceheight.toFixed(0) + "px"};
+    min-height:${deviceheight.toFixed(0) + "px"}; ;
 
 `
 export const TextInputStyle = styled.TextInput`
@@ -113,7 +113,7 @@ export const ButtosContent = styled.View`
 
 export const LoadContainer = styled.View`
     background-color: ${props => (props.isDark ? Shark : RoseWhite)};
-    height: ${deviceheight.toFixed(0) + "px"};
+    min-height:${deviceheight.toFixed(0) + "px"}; ;
     display: flex;
     justify-content: center;
 `

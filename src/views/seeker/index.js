@@ -96,7 +96,7 @@ const Seeker = ({
                     shadowOpacity: 0.5,
                     shadowRadius: 11.14,
                     elevation: 17,
-                    color: isDark ? "#FFF" : "#000"
+                    color: isDark ? "#FFF" : "#000",
                 }}
 
                 placeholder='Search for a country...'
@@ -113,7 +113,7 @@ const Seeker = ({
                 setRegionContries={setRegionContries}
             />
             <FlatList
-                style={{ marginBottom: 100 }}
+                style={{ marginBottom: 300 }}
                 data={showData}
                 keyExtractor={(item, index) => index}
                 renderItem={renderItem}

@@ -82,7 +82,7 @@ const Details = ({ route }) => {
                             Top Level Domain:{" "}
                         </CardText>
                         <CardText isDark={isDark}>
-
+                            {countri.tld[0]}
                         </CardText>
                     </Text>
                     <Text>
